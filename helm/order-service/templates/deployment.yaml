@@ -25,8 +25,18 @@ spec:
               value: {{ $e.value | quote }}
             {{- end }}
           readinessProbe:
-            httpGet: { path: /healthz, port: 5000 }
-          livenessProbe:
-            httpGet: { path: /healthz, port: 5000 }
+            httpGet:
+              path: /healthz
+              port: 5000
             initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 12    # ~1 min of retries
+
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 10
             periodSeconds: 10
+            timeoutSeconds: 2
