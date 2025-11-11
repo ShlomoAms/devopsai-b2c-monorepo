@@ -7,7 +7,7 @@ service:
   # NodePort for Docker Desktop, LoadBalancer for cloud
   type: NodePort
   port: 80
-  nodePort: 50001
+  nodePort: 30001
 
 env:
   - name: SECRET_KEY
