@@ -102,6 +102,9 @@ def baruchi_login():
     profile_url = url_for("profile", _external=True)
     # attach token as query param for browser-friendly redirection
     return redirect(f"{profile_url}?token={token}")
-
+@app.get("/lupin")
+def healthz():
+    return jsonify({"who is the king": "lupin", "service": "user-service", "env": ENVIRONMENT})
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
